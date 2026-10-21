@@ -1,0 +1,36 @@
+{% extends 'scanner/layout.html' %}
+{% block body %}
+<div class="row">
+    <div class="col-lg-4 mb-4">
+        <div class="card shadow-sm">
+            <div class="card-header bg-primary text-white">New Scan Profile</div>
+            <div class="card-body">
+                <form id="scan-form">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="target_url" class="form-label">Target URL</label>
+                        <input type="url" class="form-control" id="target_url" name="target_url" placeholder="http://127.0.0.1:8000" required>
+                    </div>
+                    <button type="submit" class="btn btn-success w-100">Launch Assessment</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-8">
+        <div class="card shadow-sm mb-4">
+            <div class="card-header bg-dark text-white">Live Execution Terminal</div>
+            <div class="card-body bg-black text-success font-monospace p-3 rounded" style="height: 220px; overflow-y: auto;">
+                <pre id="terminal-log" class="text-success m-0">> Ready for target execution...</pre>
+            </div>
+        </div>
+
+        <div class="card shadow-sm">
+            <div class="card-header bg-secondary text-white">Discovered Vulnerabilities</div>
+            <div class="card-body" id="vuln-results" style="max-height: 400px; overflow-y: auto;">
+                <p class="text-muted">No vulnerabilities detected yet.</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
